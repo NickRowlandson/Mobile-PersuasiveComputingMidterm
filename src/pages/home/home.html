@@ -14,7 +14,7 @@
   <ion-list inset>
     <ion-item-sliding *ngFor="let item of items | async" class="center">
       <ion-item>
-        <ion-label class="center">{{ item.title }}</ion-label>
+        <ion-label class="center">{{ item.title }}<ion-icon name="md-star" *ngIf="item.favourite == true" style="padding-left:5px;"></ion-icon></ion-label>
         <ion-label  style="float:right;">
           <button ion-button color="secondary" (click)="removeQty(item.$key, item.qty)"><ion-icon name="arrow-back"></ion-icon></button>
             {{ item.qty }}
@@ -22,8 +22,8 @@
         </ion-label >
       </ion-item>
       <ion-item-options side="left" class="center">
-          <ion-icon name="md-star-outline" *ngIf="item.favourite == false" (click)="updateFavourite(item.$key, item.favourite)"></ion-icon>
-          <ion-icon name="md-star" *ngIf="item.favourite == true" (click)="updateFavourite(item.$key, item.favourite)"></ion-icon>
+          <button *ngIf="item.favourite == false" ion-button><ion-icon name="md-star-outline" (click)="updateFavourite(item.$key, item.favourite)"></ion-icon></button>
+          <button *ngIf="item.favourite == true" ion-button><ion-icon name="md-star" (click)="updateFavourite(item.$key, item.favourite)"></ion-icon></button>
       </ion-item-options>
       <ion-item-options side="right">
         <button ion-button color="primary" (click)="updateItem(item.$key, item.title, item.qty)">
